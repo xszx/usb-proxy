@@ -1,3 +1,12 @@
+# orangepizero (debian) 
+build error.
+gcc: error: ‘gettid’ was not declared in this scope
+
+
+add code in device-libusb.cpp  and proxy.cpp
+#include <sys/syscall.h>
+#define gettid() syscall(__NR_gettid)
+
 # usb-proxy
 
 This software is a USB proxy based on [raw-gadget](https://github.com/xairy/raw-gadget) and libusb. It is recommended to run this repo on a computer that has an USB OTG port, such as `Raspberry Pi 4` or other [hardware](https://github.com/xairy/raw-gadget/tree/master/tests#results) that can work with `raw-gadget`, otherwise might need to use `dummy_hcd` kernel module to set up virtual USB Device and Host controller that connected to each other inside the kernel.
